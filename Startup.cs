@@ -21,11 +21,16 @@ namespace DotNetCoreSqlDb
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-           
+
+            //var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+            //var str = Configuration.GetConnectionString("SQLDbConnection");
+
+            //some test comments
+
             //Use SQL Database if in Azure, otherwise, use SQLite
             if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
                 services.AddDbContext<MyDatabaseContext>(options =>
-                        options.UseSqlServer(Configuration.GetConnectionString("MyDbConnection")));
+                        options.UseSqlServer(Configuration.GetConnectionString("SQLDbConnection")));
             else
                 services.AddDbContext<MyDatabaseContext>(options =>
                         options.UseSqlite("Data Source=localdatabase.db"));
