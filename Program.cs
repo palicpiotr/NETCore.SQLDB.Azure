@@ -17,7 +17,9 @@ namespace DotNetCoreSqlDb
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .Build();
+                 .CaptureStartupErrors(true)
+                 .UseSetting("detailedErrors", "true")
+                 .UseStartup<Startup>()
+                 .Build();
     }
 }
